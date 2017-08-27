@@ -121,6 +121,21 @@ set backspace=indent,eol,start
 "autocmd BufRead COMMIT_EDITMSG setlocal spell spelllang=en_us
 "autocmd BufNewFile,BufRead *.md,*.mkd,*.markdown set spell spelllang=en_us
 "
+"per below turns on spell check for *.tex files
+"https://stackoverflow.com/questions/5998374/if-filetype-tex
+autocmd BufNewFile,BufRead *.tex set spell
+autocmd BufNewFile,BufRead *.tex set spelllang=en_us
+autocmd BufNewFile,BufRead *.tex set modeline
+"per the below fixes issue where .tex file type doesn't play nice with
+"spell check. this fakes vim into thinking its a .plaintex file
+"https://tex.stackexchange.com/questions/135337/how-to-set-up-spell-checking-with-vim
+autocmd BufNewFile,BufRead *.tex set filetype=plaintex
+
 "key mappings
+"move to previous tab
 :map <F7> :tabp <CR>
+"move to next tab
 :map <F8> :tabn <CR>
+"auto type the open tab command
+:map <F6> :tabe 
+
