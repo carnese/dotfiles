@@ -111,9 +111,16 @@ set backspace=indent,eol,start
 
 "set spell check to on
 "per https://github.com/sagarkbhatt/vim-spell-check
-set spell
-set spelllang=en_us
-set complete+=k	
-autocmd FileType mail setlocal spell spelllang=en_us
-autocmd BufRead COMMIT_EDITMSG setlocal spell spelllang=en_us
-autocmd BufNewFile,BufRead *.md,*.mkd,*.markdown set spell spelllang=en_us
+"set spell
+"set spelllang=en_us
+"set complete+=k
+"if has("syntax")
+"	syntax spell toplevel
+"endif
+"autocmd FileType mail setlocal spell spelllang=en_us
+"autocmd BufRead COMMIT_EDITMSG setlocal spell spelllang=en_us
+"autocmd BufNewFile,BufRead *.md,*.mkd,*.markdown set spell spelllang=en_us
+"
+"key mappings
+:map <F7> :tabp <CR>
+:map <F8> :tabn <CR>
