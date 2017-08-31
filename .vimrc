@@ -109,6 +109,9 @@ set number
 "make backspace work right...
 set backspace=indent,eol,start
 
+"set tab key to use 4 spaces
+set tabstop=4
+
 "set spell check to on
 "per https://github.com/sagarkbhatt/vim-spell-check
 "set spell
