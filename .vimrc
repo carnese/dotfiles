@@ -111,6 +111,9 @@ set backspace=indent,eol,start
 
 "set tab key to use 4 spaces
 set tabstop=4
+"use 4 spaces for indentation
+set shiftwidth=4
+
 
 "set spell check to on
 "per https://github.com/sagarkbhatt/vim-spell-check
