@@ -110,9 +110,9 @@ set number
 set backspace=indent,eol,start
 
 "set tab key to use 4 spaces
-set tabstop=4
+set tabstop=2
 "use 4 spaces for indentation
-set shiftwidth=4
+set shiftwidth=2
 
 
 "set spell check to on
