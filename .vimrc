@@ -9,3 +9,6 @@ set number
 " 4 spaces that are tabs
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
+
+" adding a comment
+
