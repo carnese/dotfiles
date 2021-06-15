@@ -207,6 +207,11 @@ export NVM_DIR="$HOME/.nvm"
 # /usr/bin/python3 -m pip scripts
 export PATH="/home/dave/.local/bin:$PATH"
 
+###################################
+# clockify-cli
+##################################
+alias ck="clockify-cli"
+
 ##################################
 # system config bare repo
 #################################
