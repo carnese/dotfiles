@@ -212,6 +212,18 @@ export PATH="/home/dave/.local/bin:$PATH"
 ##################################
 alias ck="clockify-cli"
 
+
+##############
+# libreoffice
+##############
+calc() {
+    libreoffice --calc $1 &
+}
+
+
+
+
+
 ##################################
 # system config bare repo
 #################################
