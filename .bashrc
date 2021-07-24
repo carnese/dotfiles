@@ -220,9 +220,15 @@ calc() {
     libreoffice --calc $1 &
 }
 
-
-
-
+#############
+# rhinojs
+# depends on
+#       java
+#       rhinojs being install at /home/dave/code/rhinojs/rhino-jar.jar
+############
+rr() {
+    java -jar /home/dave/code/rhinojs/rhino-1.7.13.jar $1
+}
 
 ##################################
 # system config bare repo
