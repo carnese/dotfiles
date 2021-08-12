@@ -179,9 +179,20 @@ alias login-memsql-kube='kops export kubecfg memsql-2.kops.medaxion.info --admin
 #############################
 
 alias tf='/home/dave/code/tfenv/bin/terraform'
-alias wgu='sudo wg-quick up /etc/wireguard/wg0.conf'
-alias wgd='sudo wg-quick down /etc/wireguard/wg0.conf'
-alias 1pw='eval $(op signin medaxion)'
+
+###########################
+# wireguard
+##########################
+
+    # wg0
+    alias wgu='sudo wg-quick up /etc/wireguard/wg0.conf'
+    alias wgd='sudo wg-quick down /etc/wireguard/wg0.conf'
+
+    # dhank vpn
+    alias dgu='sudo wg-quick up /etc/wireguard/dhank-vpn.conf'
+    alias dgd='sudo wg-quick down /etc/wireguard/dhank-vpn.conf'
+
+
 
 #############################
 # composure settings
@@ -259,7 +270,7 @@ get_op_credential_by_uuid_and_name() {
 # Mirth
     # export mirth pass
     exmp() {
-        export MIRTH_PASS=$(get_op_credential_by_uuid_and_name "$(get_op_uuid_by_entry_title "Mirth Credential")" "password")
+        export MIRTH_PASS=$(get_op_credential_by_uuid_and_name "$(get_op_uuid_by_entry_title "Mirth Credentials")" "password")
     }
 
     # copy mirth pass
@@ -282,3 +293,4 @@ get_op_credential_by_uuid_and_name() {
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
 
 
+. `which env_parallel.bash`
