@@ -143,41 +143,15 @@ alias gometl='getMirthPass; launcher > /dev/null & disown; ssh metl'
 
 #############################
 # kubernetes
+#       depends on mtools/sysops
 #############################
-
-export KOPS_STATE_STORE="s3://com-medaxion-kops-state"
-export PATH="/home/dave/code/tfenv/bin:$PATH"
-
-source <(kubectl completion bash)
-
-alias kc=kubectl
-complete -F __start_kubectl kc
-
-alias kgp='kubectl get pods -o wide'
-alias kgpv='kubectl get pv; echo "###"; kubectl get pvc;'
-
-pbash() {
-    pod_name=$(kgp | cut -d' ' -f1 | fzf)
-    kubectl exec $pod_name --stdin --tty -- /bin/bash;
-}
-
-kgl() {
-    pod_name=$(kgp | cut -d' ' -f1 | fzf)
-    kubectl logs $pod_name
-}
-
-kdp() {
-    pod_name=$(kgp | cut -d' ' -f1 | fzf)
-    kubectl describe pods/$pod_name
-}
-
-alias login-memsql-kube='kops export kubecfg memsql-2.kops.medaxion.info --admin' 
-
+source /home/dave/code/mtools/sysops/kube-tools-wrapper.sh
 
 #############################
 # terraform
 #############################
 
+export PATH="/home/dave/code/tfenv/bin:$PATH"
 alias tf='/home/dave/code/tfenv/bin/terraform'
 
 ###########################
@@ -218,12 +192,6 @@ export NVM_DIR="$HOME/.nvm"
 # /usr/bin/python3 -m pip scripts
 export PATH="/home/dave/.local/bin:$PATH"
 
-###################################
-# clockify-cli
-##################################
-alias ck="clockify-cli"
-
-
 ##############
 # libreoffice
 ##############
@@ -243,49 +211,11 @@ rr() {
 
 ###############
 # 1password
-# depends on 
-#       1password cli binary being install at /usr/local/bin/op
+#       depends on mtools/sysops
 ##############
 
-# Sign into 1password medaxion
-op-s() {
-    eval $(op signin medaxion)
-}
-
-# Get the entry uuid by it's title
-get_op_uuid_by_entry_title() {
-    op_entry_title=$1
-    local uuid=$(op list items | jq -r --arg OP_ENTRY_TITLE "$op_entry_title" '.[    ] | select(.overview.title == $OP_ENTRY_TITLE) | .uuid')
-    echo -n $uuid
-}
-
-# Get a credential by uuid and name. This works with 1password note datatypes and expects credentials to be in the "fields" section
-get_op_credential_by_uuid_and_name() {
-    local uuid=$1
-    local title=$2
-    local credential=$(op get item $uuid | jq -r --arg TITLE "$title" '.details.sections[] | .fields[] | select(.t == $TITLE) | .v')
-    echo -n $credential
-}
-
-# Mirth
-    # export mirth pass
-    exmp() {
-        export MIRTH_PASS=$(get_op_credential_by_uuid_and_name "$(get_op_uuid_by_entry_title "Mirth Credentials")" "password")
-    }
-
-    # copy mirth pass
-    cmp() {
-        get_op_credential_by_uuid_and_name "$(get_op_uuid_by_entry_title "Mirth Credentials")" "password" | pbcopy
-    }
-
-# looker
-    exlci() {
-        export LOOKER_API_CLIENT_ID=$(get_op_credential_by_uuid_and_name "$(get_op_uuid_by_entry_title "Looker API Credentials")" "client_id")
-    }
-
-    exlcs() {
-        export LOOKER_API_CLIENT_SECRET=$(get_op_credential_by_uuid_and_name "$(get_op_uuid_by_entry_title "Looker API Credentials")" "client_secret")
-    }
+source /home/dave/code/mtools/sysops/op-tool-wrapper.sh
+export PATH="/home/dave/code/mtools/sysops:$PATH"
 
 ##################################
 # system config bare repo
