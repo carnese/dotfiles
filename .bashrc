@@ -217,6 +217,13 @@ rr() {
 source /home/dave/code/mtools/sysops/op-tool-wrapper.sh
 export PATH="/home/dave/code/mtools/sysops:$PATH"
 
+#############
+# m-tool
+#      depends on mtools/mirth
+#############
+source /home/dave/code/mtools/mirth/m-tool-wrapper.sh
+export PATH="/home/dave/code/mtools/mirth:$PATH"
+
 ##################################
 # system config bare repo
 #################################
@@ -224,3 +231,7 @@ alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
 
 
 . `which env_parallel.bash`
+
+
+# golang
+export PATH=$PATH:/home/dave/go/bin
